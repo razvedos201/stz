@@ -7,7 +7,6 @@ class DB
     {
 
         try {
-
             $settings = parse_ini_file(__DIR__.'/../db_settings.ini');
             $dsn = $settings[database][driver].':dbname='.$settings[database][schema].
                     ';host='.$settings[database][host];
