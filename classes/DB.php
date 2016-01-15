@@ -25,11 +25,9 @@ class DB
 
             $sth->execute($arr);
 
-            $arrResult = [];
-            while ($res = $sth->fetchObject($class)) {
-                $arrResult[] = $res;
-            }
-            return $arrResult;
+            return $sth->fetchAll(PDO::FETCH_OBJ);
+
+
     }
 
 }
