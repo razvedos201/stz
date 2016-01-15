@@ -2,14 +2,18 @@
 
 class DB
 {
-    private $dsn = 'mysql:dbname=test;host=127.0.0.1';
-    private $user = 'root';
-    private $password = '';
 
     public function query($sql,$arr,$class = 'stdClass')
     {
+
         try {
-            $dbh = new PDO($this->dsn, $this->user, $this->password);
+            $settings = [];
+            $settings = parse_ini_file(__DIR__.'/../db_settings.ini');
+            $dsn = $settings[database][driver].':dbname='.$settings[database][schema].
+                    ';host='.$settings[database][host];
+            $username = $settings[database][username];
+            $password = $settings[database][password];
+            $dbh = new PDO($dsn,$username,$password);
         }catch (PDOException $e){
             echo 'Подключение не удалось: ' . $e->getMessage();
             die;
