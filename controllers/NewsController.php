@@ -12,7 +12,10 @@ class NewsController
     public function actionOne()
     {
         $id = $_GET['id'];
-        $items = News::getOne($id);
+        $items = News::delOne($id);
+        News::getAll();
         require_once __DIR__.'/../views/one.php';
     }
+
+
 }
